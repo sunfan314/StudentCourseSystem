@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.multipart.maxSize" value="10240000" />
+
+	<constant name="struts.action.extension" value="action" />
+
+	<package name="pages" extends="struts-default">
+		<action name="login">
+			<result>/jsp/login/login.jsp</result>
+		</action>
+
+		<action name="loginPro" class="edu.cn.action.LoginAction">
+			<result name="0">/jsp/admin/admin.jsp</result>
+			<result name="1">/jsp/teacher/teacher.jsp</result>
+			<result name="2">/jsp/student/student.jsp</result>
+			<result name="error">/jsp/login/fail.jsp</result>
+		</action>
+
+		<action name="studentManage">
+			<result>/jsp/admin/studentManage.jsp</result>
+		</action>
+
+		<action name="teacherManage">
+			<result>/jsp/admin/teacherManage.jsp</result>
+		</action>
+
+		<action name="courseManage">
+			<result>/jsp/admin/courseManage.jsp</result>
+		</action>
+
+		<action name="teacherAllocation">
+			<result>/jsp/admin/teacherAllocation.jsp</result>
+		</action>
+
+		<action name="teacherCourses" class="edu.cn.action.TeacherAction">
+			<result name="success">/jsp/teacher/teacherCourses.jsp</result>
+		</action>
+
+		<action name="studentScoreManage" class="edu.cn.action.TeacherAction">
+			<result name="success">/jsp/teacher/studentScoreManage.jsp</result>
+		</action>
+
+		<action name="teacherInfoManage" class="edu.cn.action.TeacherAction">
+			<result name="success">/jsp/teacher/teacherInfoManage.jsp</result>
+		</action>
+
+		<action name="changePassword" class="edu.cn.action.TeacherAction">
+			<result name="success">/jsp/teacher/changePassword.jsp</result>
+		</action>
+		
+		<action name="studentInfoManage" class="edu.cn.action.StudentAction">
+			<result name="success">/jsp/student/studentInfoManage.jsp</result>
+		</action>
+		
+		<action name="studentCourses" class="edu.cn.action.StudentAction"
+			method="studentCourses">
+			<result name="success">/jsp/student/studentCourses.jsp</result>
+		</action>
+		
+		<action name="selectCourse" class="edu.cn.action.StudentAction">
+			<result name="success">/jsp/student/selectCourse.jsp</result>
+		</action>
+		
+		<action name="courseTeachers" class="edu.cn.action.StudentAction">
+			<result name="success">/jsp/student/courseTeachers.jsp</result>
+		</action>
+
+		<action name="*">
+			<result>/jsp/{1}.jsp</result>
+		</action>
+
+	</package>
+
+	<package name="admin" extends="json-default">
+		<action name="getStudents" class="edu.cn.action.AdminAction">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+
+		<action name="getTeachers" class="edu.cn.action.AdminAction"
+			method="getTeachers">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+
+		<action name="getCourses" class="edu.cn.action.AdminAction"
+			method="getCourses">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+
+		<action name="getCourseTeachers" class="edu.cn.action.AdminAction"
+			method="getCourseTeachers">
+			<result type="json">
+				<param name="root">jsonArray</param>
+			</result>
+		</action>
+
+		<action name="getOtherCourseTeachers" class="edu.cn.action.AdminAction"
+			method="getOtherCourseTeachers">
+			<result type="json">
+				<param name="root">jsonArray</param>
+			</result>
+		</action>
+
+		<action name="getTeacherCourses" class="edu.cn.action.TeacherAction"
+			method="getTeacherCourses">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+
+		<action name="getCourseStudentScores" class="edu.cn.action.TeacherAction"
+			method="getCourseStudentScores">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+
+		<action name="getTeacherInfo" class="edu.cn.action.TeacherAction"
+			method="getTeacherInfo">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+
+		<action name="getJsonTeacherInfo" class="edu.cn.action.TeacherAction"
+			method="getJsonTeacherInfo">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+		
+		<action name="getStudentInfo" class="edu.cn.action.StudentAction"
+			method="getStudentInfo">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+		
+		<action name="getStudentCourses" class="edu.cn.action.StudentAction"
+			method="getStudentCourses">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+		
+		<action name="getCourseSelectStatus" class="edu.cn.action.StudentAction"
+			method="getCourseSelectStatus">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+		
+		<action name="getCourseTeacherInfos" class="edu.cn.action.StudentAction"
+			method="getCourseTeachers">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+
+		<action name="addStudent" class="edu.cn.action.AdminAction"
+			method="addStudent">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+
+		<action name="addTeacher" class="edu.cn.action.AdminAction"
+			method="addTeacher">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+
+		<action name="addCourse" class="edu.cn.action.AdminAction"
+			method="addCourse">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+
+		<action name="addTeacherToCourse" class="edu.cn.action.AdminAction"
+			method="addTeacherToCourse">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+
+		<action name="updateUser" class="edu.cn.action.AdminAction"
+			method="updateUser">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+
+		<action name="updateCourse" class="edu.cn.action.AdminAction"
+			method="updateCourse">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+
+		<action name="updateStudentCourseScores" class="edu.cn.action.TeacherAction"
+			method="updateStudentCourseScores">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+
+		<action name="updateTeacherInfo" class="edu.cn.action.TeacherAction"
+			method="updateTeacherInfo">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+		
+		<action name="updateStudentInfo" class="edu.cn.action.StudentAction"
+			method="updateStudentInfo">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+
+		<action name="updatePassword" class="edu.cn.action.TeacherAction"
+			method="updatePassword">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+
+		<action name="deleteUser" class="edu.cn.action.AdminAction"
+			method="deleteUser">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+
+		<action name="deleteCourse" class="edu.cn.action.AdminAction"
+			method="deleteCourse">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+
+		<action name="deleteTeacherFromCourse" class="edu.cn.action.AdminAction"
+			method="deleteTeacherFromCourse">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+		
+		<action name="addStudentCourse" class="edu.cn.action.StudentAction"
+			method="addStudentCourse">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+		
+		<action name="deleteStudentCourse" class="edu.cn.action.StudentAction"
+			method="deleteStudentCourse">
+			<result type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+		
+	</package>
+
+
+
+
+</struts>   
